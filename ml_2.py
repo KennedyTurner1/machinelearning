@@ -15,7 +15,9 @@ print(nyc.Date.values) #puts all the the dates into a list, but it is not in one
 print(nyc.Date.values.reshape(-1,1)) #reshape the one dimensional array into two dimensional, with one column 
 
 #give it the data, then the target (temperature)
-x_train, x_test, y_train, y_test = train_test_split(nyc.Date.values.reshape(-1,1), nyc.Temperature, random_state=1)
+x_train, x_test, y_train, y_test = train_test_split(nyc.Date.values.reshape(-1,1), nyc.Temperature, random_state=11) #data, target, we all get the same random features
+
+#print(x_test) #taken the array and split it 
 
 from sklearn.linear_model import LinearRegression
 
@@ -25,12 +27,13 @@ lr.fit(X=x_train, y=y_train) #x_train is our raw data not our target, y_train is
                              #x's are our data, y's are our targets - tests are used to see the accuracy of the model 
                              #fit method adjusts the slope to make sure the data point distanced are minimalized
                              #coef is m and intercept is b y=mx +b 
+                             #where the learning is taking place 
 
 print(lr.coef_)
 print(lr.intercept_)
 
 predicted = lr.predict(x_test) #give it the variable that you have trained
-expected = y_test
+expected = y_test 
 
 for p,e in zip(predicted[::5], expected[::5]):
     print(f"predicted: {p:.2f}, expected: {e:.2f}")
@@ -56,7 +59,7 @@ axes.set_ylim(10,70)
 
 import numpy as np 
 
-x = np.array([min(nyc.Date.values), max(nyc.Date.values)])
+x = np.array([min(nyc.Date.values), max(nyc.Date.values)]) 
 
 print(x)
 
@@ -66,7 +69,7 @@ print(y)
 
 import matplotlib.pyplot as plt
 
-line = plt.plot(x,y)
+line = plt.plot(x,y) #plotting min and max temp and date
 plt.show()
 
 

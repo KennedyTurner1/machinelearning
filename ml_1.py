@@ -59,7 +59,7 @@ print(format(knn.score(x_test, y_test), ".2%")) #looking for how accurate the x 
 
 from sklearn.metrics import confusion_matrix
 
-cf = confusion_matrix(y_true=expected, y_pred=predicted)
+cf = confusion_matrix(y_true=expected, y_pred=predicted) #what is the target you were supposed to get, what you actually got
 
 print(cf) #the number 8 out of 0-9 has the most issues so we think this is where it predicted it wrong
 
