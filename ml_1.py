@@ -46,7 +46,28 @@ knn.fit(X=x_train, y=y_train) #give it the data as the x and the target at the y
 #feed it test data to see if it can correctly predict the outcome
 predicted = knn.predict(x_test) #just give it the x value because we want it to predict the y value. 
 
-expected = y_test #let's see how they compare 
+expected = y_test #let's see how they compare, what is the target value we were supposed to test  
 
 print(predicted[:20]) #[0 4 9 9 3 1 4 1 5 0 4 9 4 1 5 3 3 8 5 6]
-print(expected[:20]) #[0 4 9 9 3 1 4 1 5 0 4 9 4 1 5 3 3 8 3 6]
+print(expected[:20])  #[0 4 9 9 3 1 4 1 5 0 4 9 4 1 5 3 3 8 3 6]
+
+wrong = [(p,e) for (p,e) in zip(predicted[:20], expected[:20]) if p != e] #iterating through both of the arrays and seeing if they are the same
+
+print(wrong) #[(5, 3)]
+
+print(format(knn.score(x_test, y_test), ".2%")) #looking for how accurate the x and the y test are, 97.78% accurate
+
+from sklearn.metrics import confusion_matrix
+
+cf = confusion_matrix(y_true=expected, y_pred=predicted)
+
+print(cf) #the number 8 out of 0-9 has the most issues so we think this is where it predicted it wrong
+
+import pandas as pd
+import seaborn as shs
+import matplotlib.pyplot as plt2
+
+cf_df = pd.DataFrame(cf, index=range(10)) #rows (digits 0-9) are 9 rows, columns
+fig = plt2.figure(figsize=(7,6))
+axes = shs.heatmap(cf_df, annot=True, cmap= plt2.cm.nipy_spectral_r) 
+plt2.show()
