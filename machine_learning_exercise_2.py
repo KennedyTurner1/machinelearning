@@ -64,3 +64,12 @@ import matplotlib.pyplot as plt
 
 line = plt.plot(x,y) #plotting min and max temp and date
 plt.show()
+
+#the file we did in class compares the January high temperatures in NYC from 1895-2018, 
+#and this file compares the average temperatures in NYC from years 1895-2017. 
+#The difference between the output of the average temp. file and the high temp. yearly file 
+#is that the distance between the regression line is decreased, which means that the average temperatures had less variance
+#than the high temperatures in NYC for each year.
+#We want to create a model that has a regression line with a short distance between the data point and the predicted line because 
+#that means that our model is predicting our expected temperature more accurately. It is easier for the model to predict an average temperature
+#than a high temperature because high temperatures vary from each year and can create outliers. Average temperatures reduce this likelihood.
